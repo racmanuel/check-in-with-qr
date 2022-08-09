@@ -13,4 +13,9 @@
 
 ?>
 
-<!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<!--Check in with QR Code. -->
+<div id="check-in-with-qr">
+    <div id="qr-reader" style="width: 100%;">
+
+    </div>
+</div>
