@@ -20,73 +20,101 @@
  * @subpackage Check_In_With_Qr/admin
  * @author     Manuel Ramirez Coronel <ra_cm@outlook.com>
  */
-class Check_In_With_Qr_Admin {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
+use chillerlan\QRCode\QRCode;
 
-	/**
-	 * The unique prefix of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_prefix    The string used to uniquely prefix technical functions of this plugin.
-	 */
-	private $plugin_prefix;
+class Check_In_With_Qr_Admin
+{
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+    /**
+     * The ID of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $plugin_name    The ID of this plugin.
+     */
+    private $plugin_name;
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string $plugin_name       The name of this plugin.
-	 * @param      string $plugin_prefix    The unique prefix of this plugin.
-	 * @param      string $version    The version of this plugin.
-	 */
-	public function __construct( $plugin_name, $plugin_prefix, $version ) {
+    /**
+     * The unique prefix of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $plugin_prefix    The string used to uniquely prefix technical functions of this plugin.
+     */
+    private $plugin_prefix;
 
-		$this->plugin_name   = $plugin_name;
-		$this->plugin_prefix = $plugin_prefix;
-		$this->version = $version;
+    /**
+     * The version of this plugin.
+     *
+     * @since    1.0.0
+     * @access   private
+     * @var      string    $version    The current version of this plugin.
+     */
+    private $version;
 
-	}
+    /**
+     * Initialize the class and set its properties.
+     *
+     * @since    1.0.0
+     * @param      string $plugin_name       The name of this plugin.
+     * @param      string $plugin_prefix    The unique prefix of this plugin.
+     * @param      string $version    The version of this plugin.
+     */
+    public function __construct($plugin_name, $plugin_prefix, $version)
+    {
 
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
-	 * @param string $hook_suffix The current admin page.
-	 */
-	public function enqueue_styles( $hook_suffix ) {
+        $this->plugin_name = $plugin_name;
+        $this->plugin_prefix = $plugin_prefix;
+        $this->version = $version;
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/check-in-with-qr-admin.css', array(), $this->version, 'all' );
+    }
 
-	}
+    /**
+     * Register the stylesheets for the admin area.
+     *
+     * @since    1.0.0
+     * @param string $hook_suffix The current admin page.
+     */
+    public function enqueue_styles($hook_suffix)
+    {
 
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 * @param string $hook_suffix The current admin page.
-	 */
-	public function enqueue_scripts( $hook_suffix ) {
+        wp_enqueue_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/check-in-with-qr-admin.css', array(), $this->version, 'all');
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/check-in-with-qr-admin.js', array( 'jquery' ), $this->version, false );
+    }
 
-	}
+    /**
+     * Register the JavaScript for the admin area.
+     *
+     * @since    1.0.0
+     * @param string $hook_suffix The current admin page.
+     */
+    public function enqueue_scripts($hook_suffix)
+    {
 
+        wp_enqueue_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/check-in-with-qr-admin.js', array('jquery'), $this->version, false);
+
+    }
+
+    /**
+     * Create new section in Users profile
+     *
+     * Create new section in Users profile
+     *
+     * @param Type $colunm
+     * @return type array
+     **/
+    public function check_in_with_qr_custom_profile($user_id)
+    {
+        $qrcode = new QRCode();
+		echo '<pre>';
+		print_r($user_id);
+		echo '</pre>';
+
+		$name_user = get_user_meta($user_id->ID, 'first_name', true);
+        $last_name_user = get_user_meta($user_id->ID, 'last_name', true);
+
+        $data = $user_id->ID .' - '. $user_id->user_email . ' - ' . $name_user . ' ' . $last_name_user;
+        include_once 'partials/check-in-with-qr-admin-display.php';
+    }
 }

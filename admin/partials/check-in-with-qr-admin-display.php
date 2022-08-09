@@ -14,3 +14,11 @@
 ?>
 
 <!-- This file should primarily consist of HTML with a little bit of PHP. -->
+<h3><?php _e("QR Code", "blank");?></h3>
+<table class="form-table">
+    <tr>
+        <td>
+            <img src="<?php echo $qrcode->render($data) ?>" alt="QR Code" />
+        </td>
+    </tr>
+</table>
