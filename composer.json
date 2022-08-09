@@ -1,0 +1,12 @@
+{
+    "name": "rcmanuel/check-in-with-qr",
+    "require": {
+        "chillerlan/php-qrcode": "^4.3"
+    },
+    "authors": [
+        {
+            "name": "Manuel Ramirez Coronel",
+            "email": "ra_cm@outlook.com"
+        }
+    ]
+}
