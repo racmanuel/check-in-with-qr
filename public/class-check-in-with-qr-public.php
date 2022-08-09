@@ -83,7 +83,7 @@ class Check_In_With_Qr_Public {
 	 */
 	public function enqueue_scripts() {
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/check-in-with-qr-public.js', array( 'jquery' ), $this->version, true );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/check-in-with-qr-public-dist.js', array( 'jquery' ), $this->version, true );
 
 	}
 
@@ -135,8 +135,9 @@ class Check_In_With_Qr_Public {
 			$out = intval( $atts['attribute'] ) . ' ' . sanitize_text_field( $out );// Remember to sanitize your user input.
 		}
 
+		echo '<div id="qr-reader" style="width: 600px"></div>';
 		// ShortCodes are filters and should always return, never echo.
-		return $out;
+		//return $out;
 
 	}
 

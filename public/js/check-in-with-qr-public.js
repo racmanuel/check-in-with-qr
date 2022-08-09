@@ -1,4 +1,9 @@
-(function( $ ) {
+// To use Html5QrcodeScanner (more info below)
+import {
+	Html5QrcodeScanner
+} from "html5-qrcode"
+
+(function ($) {
 	'use strict';
 
 	/**
@@ -29,4 +34,24 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
-})( jQuery );
+	$(function () {
+		function onScanSuccess(decodedText, decodedResult) {
+			// handle the scanned code as you like, for example:
+			console.log(`Code matched = ${decodedText}`, decodedResult);
+		}
+
+		let config = {
+			fps: 10,
+			qrbox: {
+				width: 250,
+				height: 250
+			},
+			rememberLastUsedCamera: true,
+		};
+
+		let html5QrcodeScanner = new Html5QrcodeScanner(
+			"qr-reader", config, /* verbose= */ false);
+		html5QrcodeScanner.render(onScanSuccess);
+	});
+
+})(jQuery);
