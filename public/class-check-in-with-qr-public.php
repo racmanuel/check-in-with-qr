@@ -135,9 +135,12 @@ class Check_In_With_Qr_Public {
 			$out = intval( $atts['attribute'] ) . ' ' . sanitize_text_field( $out );// Remember to sanitize your user input.
 		}
 
-		echo '<div id="qr-reader" style="width: 600px"></div>';
+		ob_start();
+			include_once 'partials/check-in-with-qr-public-display.php';
+		$out = ob_get_clean();
+		
 		// ShortCodes are filters and should always return, never echo.
-		//return $out;
+		return $out;
 
 	}
 
