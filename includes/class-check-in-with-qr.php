@@ -174,6 +174,7 @@ class Check_In_With_Qr {
 
 		$this->loader->add_action( 'show_user_profile', $plugin_admin, 'check_in_with_qr_custom_profile' );
 		$this->loader->add_action( 'edit_user_profile', $plugin_admin, 'check_in_with_qr_custom_profile' );
+
 	}
 
 	/**
@@ -192,7 +193,9 @@ class Check_In_With_Qr {
 
 		// Shortcode name must be the same as in shortcode_atts() third parameter.
 		$this->loader->add_shortcode( $this->get_plugin_prefix() . 'shortcode', $plugin_public, 'check_in_with_qr_shortcode_func' );
-
+		// Insert in DB
+		$this->loader->add_action('wp_ajax_nopriv_check_in_with_qr_insert_db', $plugin_public, 'check_in_with_qr_insert_db'); // Para usuarios no logueados
+		$this->loader->add_action('wp_ajax_check_in_with_qr_insert_db', $plugin_public, 'check_in_with_qr_insert_db'); // Para usuarios logueados
 	}
 
 	/**

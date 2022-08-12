@@ -18,7 +18,7 @@
 <table class="form-table">
     <tr>
         <td>
-            <img src="<?php echo $qrcode->render($data) ?>" alt="QR Code" />
+            <img src="<?php echo $qrcode->render($encrypted_string) ?>" alt="QR Code" />
         </td>
     </tr>
 </table>

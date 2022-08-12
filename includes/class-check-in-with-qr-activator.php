@@ -175,17 +175,16 @@ class Check_In_With_Qr_Activator
         $table_name = $wpdb->prefix . 'check_in_out';
 
         $table_create = "CREATE TABLE $table_name (
-			`id` INT(11) NOT NULL AUTO_INCREMENT,
-			`id_user` INT(11) NOT NULL,
-			`date` DATE NOT NULL,
-			`time` TIME NOT NULL,
-			`year` YEAR NOT NULL,
-			`check_in` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
-			PRIMARY KEY (`id`) USING BTREE
-		)
-		$charset_collate
-		ENGINE=InnoDB
-		;";
+            `id` INT(11) NOT NULL AUTO_INCREMENT,
+            `time_stamp` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            `id_user` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+            `check_in` VARCHAR(255) NOT NULL COLLATE 'utf8_general_ci',
+            PRIMARY KEY (`id`) USING BTREE
+        )
+        $charset_collate
+        ENGINE=InnoDB
+        AUTO_INCREMENT=1
+        ;";
 
         require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         

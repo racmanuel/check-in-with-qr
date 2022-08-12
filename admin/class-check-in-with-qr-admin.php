@@ -114,7 +114,13 @@ class Check_In_With_Qr_Admin
 		$name_user = get_user_meta($user_id->ID, 'first_name', true);
         $last_name_user = get_user_meta($user_id->ID, 'last_name', true);
 
-        $data = $user_id->ID .' - '. $user_id->user_email . ' - ' . $name_user . ' ' . $last_name_user;
+        $data = $user_id->ID;
+
+        $string_to_encrypt= $data;
+        $password="password";
+        $encrypted_string=openssl_encrypt($string_to_encrypt,"AES-128-ECB",$password);
+        $decrypted_string=openssl_decrypt($encrypted_string,"AES-128-ECB",$password);
+        
         include_once 'partials/check-in-with-qr-admin-display.php';
     }
 }

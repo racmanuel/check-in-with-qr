@@ -38,7 +38,20 @@ import {
 		function onScanSuccess(decodedText) {
 			// handle the scanned code as you like, for example:
 			console.log(decodedText);
-			alert('Se ha registrado.');
+				$.ajax({
+					type: "POST",
+					url: ajax_object.ajax_url,
+					data: {
+						check: decodedText,
+						action: 'check_in_with_qr_insert_db'
+					},
+					success: function (response) {
+						alert('Se registro en la Base de Datos.');	
+					},
+					error: function (response) {
+						alert(response);
+					}
+				});
 		}
 
 		// Square QR box with edge size = 60% of the smaller edge of the viewfinder.
