@@ -29,4 +29,19 @@
 	 * practising this, we should strive to set a better example in our own work.
 	 */
 
+	 $(function() {
+		$('#table-checks').DataTable( {
+			dom: 'Bfrtip',
+			buttons: [
+				'copyHtml5',
+				'excelHtml5',
+				'csvHtml5',
+				'pdfHtml5'
+			],
+			language: {
+				url: 'https://cdn.datatables.net/plug-ins/1.12.1/i18n/es-MX.json'
+			}
+		} );
+	 });
+
 })( jQuery );

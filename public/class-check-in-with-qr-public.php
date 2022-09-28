@@ -153,6 +153,10 @@ class Check_In_With_Qr_Public
     public function check_in_with_qr_insert_db()
     {
         $get_check = $_POST['check'];
+         /** We use the secret word to encrypt this can be changed */
+         $password="check-in-with-qr";
+        /** Decrypt the User ID */
+        $decrypted_string = openssl_decrypt($get_check,"AES-128-ECB",$password);
 		$type_check = 'in';
 		
         // Nuestro código de manipulación de los datos
@@ -163,7 +167,7 @@ class Check_In_With_Qr_Public
         $wpdb->insert(
             $table_name,
             array(
-                'id_user' => $get_check,
+                'id_user' => $decrypted_string,
                 'check_in' => $type_check,
             )
         );
