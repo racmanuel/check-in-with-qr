@@ -98,29 +98,55 @@ class Check_In_With_Qr_Admin
 
     /**
      * Create new section in Users profile
-     *
-     * Create new section in Users profile
-     *
-     * @param Type $colunm
-     * @return type array
      **/
     public function check_in_with_qr_custom_profile($user_id)
     {
+        /** New Object for the QRCode - Library */
         $qrcode = new QRCode();
+
+        /** For see the $user_id contains */
 		echo '<pre>';
 		print_r($user_id);
 		echo '</pre>';
 
+        /** Not used */
 		$name_user = get_user_meta($user_id->ID, 'first_name', true);
         $last_name_user = get_user_meta($user_id->ID, 'last_name', true);
+        /** Not used */
 
+        /** This info is inserted in the Database of WP */
         $data = $user_id->ID;
-
+        /** But first we encrypt the information to prevent the content of the QR from being read */
         $string_to_encrypt= $data;
-        $password="password";
+        /** We use the secret word to encrypt this can be changed */
+        $password="check-in-with-qr";
+        /** Encript the varialbe $string_to_encrypt */
         $encrypted_string=openssl_encrypt($string_to_encrypt,"AES-128-ECB",$password);
-        $decrypted_string=openssl_decrypt($encrypted_string,"AES-128-ECB",$password);
+
+
+        //$decrypted_string=openssl_decrypt($encrypted_string,"AES-128-ECB",$password);
         
         include_once 'partials/check-in-with-qr-admin-display.php';
+    }
+
+     /**
+     * Create new menu in WP Admin for Reports
+     **/
+    public function check_in_with_qr_menu_page(){
+        add_menu_page(
+            'Check In and Out',
+            'Check In and Out',
+            'manage_options',
+            'check-in-with-qr',
+            array(__CLASS__,'check_in_with_qr_view'),
+            'dashicons-analytics'
+        );
+    }
+
+    /**
+     * Include the page of Check in and Out
+     */
+    public static function check_in_with_qr_view(){
+        include "partials/check-in-with-qr-admin-page.php";
     }
 }

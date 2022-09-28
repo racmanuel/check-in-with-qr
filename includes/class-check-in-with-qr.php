@@ -175,6 +175,7 @@ class Check_In_With_Qr {
 		$this->loader->add_action( 'show_user_profile', $plugin_admin, 'check_in_with_qr_custom_profile' );
 		$this->loader->add_action( 'edit_user_profile', $plugin_admin, 'check_in_with_qr_custom_profile' );
 
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'check_in_with_qr_menu_page' );
 	}
 
 	/**

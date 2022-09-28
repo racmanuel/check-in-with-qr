@@ -142,7 +142,7 @@ class Check_In_With_Qr_Public
         }
 
         ob_start();
-        include_once 'partials/check-in-with-qr-public-display.php';
+            include_once 'partials/check-in-with-qr-public-display.php';
         $out = ob_get_clean();
 
         // ShortCodes are filters and should always return, never echo.
