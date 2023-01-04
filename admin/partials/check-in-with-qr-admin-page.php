@@ -5,6 +5,12 @@
 
     $table_name = $wpdb->prefix . 'check_in_out';
     $results = $wpdb->get_results("SELECT * FROM $table_name");
+
+    /**
+     * THIS IS A NOTE FOR DEVELOPMENT:
+     * Add a Filters by date and time stamp maybe this is a pro plugin function for the plugin of WordPress.
+     * Check in the docs of datatables if this is posible with the SQL DB.
+     */
 ?>
 <div class="wrap">
     <h1>Dashboard</h1>

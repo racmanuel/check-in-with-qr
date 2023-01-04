@@ -176,6 +176,10 @@ class Check_In_With_Qr {
 		$this->loader->add_action( 'edit_user_profile', $plugin_admin, 'check_in_with_qr_custom_profile' );
 
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'check_in_with_qr_menu_page' );
+
+		$this->loader->add_filter( 'manage_users_columns', $plugin_admin ,'modify_user_table' );
+		$this->loader->add_filter( 'manage_users_custom_column',$plugin_admin ,'modify_user_table_row', 10, 3 );
+
 	}
 
 	/**
